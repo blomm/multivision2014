@@ -2,7 +2,8 @@
 // in your node.js application and automatically restart the server
 
 var express = require('express'),
-    stylus =require('stylus');
+    stylus =require('stylus'),
+    mongoose =require('mongoose');
 
 //create the environment variable - default is development if non has been set
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -39,6 +40,26 @@ app.configure(function() {
     app.use(express.static(__dirname+'/public'));
 });
 
+//multivision is the db that will be created
+mongoose.connect('mongodb://localhost/multivision');
+var db = mongoose.connection;
+db.on('error',console.error.bind(console, 'connection error'))  ;
+db.once('open',function callback(){
+    console.log('multivision db opened');
+});
+
+var messageSchema = mongoose.Schema({message:String});
+//create the model to hold the message based on the above schema
+//mongoose will look in the db for messages (pluralised) unless we
+//add the third parameter which is the name of the collection in the db
+var Message=mongoose.model('message',messageSchema);
+var mongoMessage;
+Message.findOne().exec(function(err,messageDoc){
+    //console.log(messageDoc);
+    //console.log(err);
+    mongoMessage=messageDoc.message;
+})
+
 //any call that comes into the partials folder
 app.get('/partials/:partialPath', function(request, result){
     result.render('partials/'+request.params.partialPath)
@@ -48,7 +69,9 @@ app.get('/partials/:partialPath', function(request, result){
 app.get('*', function(request, result){
     //use the line below if we want to render raw html
     //result.render('index.html');
-    result.render('index');
+    result.render('index',{
+        mongoMessage:mongoMessage
+    });
 })
 
 var port =3030;
