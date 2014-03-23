@@ -2,6 +2,19 @@ extends ../includes/layout
 
 // tells jade to plug this content into the placeholder in the layout
 block main-content
-    section.content
-        div(ng-view)
-    h2=mongoMessage
+  .navbar.navbar-inverse.navbar-fixed-top
+    .container
+      .navbar-header
+          a.navbar-brand(href="/") Multivision2014
+            h6 -Extreme Training
+      .navbar-collapse.collapse
+        ul.nav.navbar-nav
+          li
+            a(href="/") Home
+        div(ng-include="'/partials/account/navbar-login'")
+
+  section.content
+    div(ng-view)
+
+  footer.container.text-center
+    p &copy: 2014 Multivision2014 Corp International

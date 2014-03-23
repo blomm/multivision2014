@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+//this engines object is added for the benefit of heroku (along with the Procfile stored in the root)
   "engines":{
       "node":"0.10.x",
       "npm":"1.4.x"

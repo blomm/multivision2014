@@ -53,7 +53,7 @@ db.once('open',function callback(){
     console.log('multivision db opened');
 });
 
-var messageSchema = mongoose.Schema({message:String});
+/*var messageSchema = mongoose.Schema({message:String});
 //create the model to hold the message based on the above schema
 //mongoose will look in the db for messages (pluralised) unless we
 //add the third parameter which is the name of the collection in the db
@@ -63,20 +63,22 @@ Message.findOne().exec(function(err,messageDoc){
     //console.log(messageDoc);
     //console.log(err);
     mongoMessage=messageDoc.message;
-})
+})*/
 
 //any call that comes into the partials folder
-app.get('/partials/:partialPath', function(request, result){
-    result.render('partials/'+request.params.partialPath)
+app.get('/partials/*', function(request, result){
+    result.render('../../public/app/'+request.params)
 })
 
 //default-catch-all route handling
 app.get('*', function(request, result){
     //use the line below if we want to render raw html
     //result.render('index.html');
-    result.render('index',{
+    /*result.render('index',{
         mongoMessage:mongoMessage
-    });
+    });*/
+  result.render('index');
+
 })
 
 var port =process.env.PORT||3030;
