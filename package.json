@@ -6,19 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-//this engines object is added for the benefit of heroku (along with the Procfile stored in the root)
-  "engines":{
-      "node":"0.10.x",
-      "npm":"1.4.x"
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
   },
   "author": "blomster",
   "license": "ISC",
   "dependencies": {
     "jade": "^1.3.0",
-    "express": "^3.4.8",
+    "express": "^3.5.1",
     "stylus": "^0.42.3",
     "ejs": "^0.8.5",
-    "mongoose": "^3.8.8"
+    "mongoose": "^3.8.8",
+    "passport-local": "^1.0.0",
+    "passport": "^0.2.0",
+    "node": "0.0.0"
   },
   "devDependencies": {}
 }
