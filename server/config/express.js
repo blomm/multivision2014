@@ -1,5 +1,6 @@
 var express = require('express'),
-  stylus = require('stylus')
+  stylus = require('stylus'),
+  passport=require('passport');
 
 module.exports=function(app, config){
   //set up stylus
@@ -11,12 +12,12 @@ module.exports=function(app, config){
   app.configure(function() {
     app.set('views', config.rootPath+'/server/views');
     app.set('view engine', 'jade');
-    //use the line below if we want to render raw html
-    //http://stackoverflow.com/questions/4529586/render-basic-html-view-in-node-js-express
-    //app.engine('html', require('ejs').renderFile);
     app.use(express.logger('dev'));
-    //will parse the body of any documents sent back to the server
+    app.use(express.cookieParser());
     app.use(express.bodyParser());
+    app.use(express.session({secret: 'multi vision unicorns'}));
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     //configure the stylus middle ware
     app.use(stylus.middleware(
