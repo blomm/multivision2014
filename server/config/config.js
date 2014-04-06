@@ -4,9 +4,9 @@ var rootPath=path.normalize(__dirname+'/../../');
 
 module.exports={
   development:{
-    db:'mongodb://localhost/multivision2014',
+    db:'mongodb://localhost/multivision2015',
     rootPath:rootPath,
-    port:process.env.PORT||3030
+    port:3030
   },
   production:{
     db:'mongodb://blomm:multivision@ds033307.mongolab.com:33307/multivision',

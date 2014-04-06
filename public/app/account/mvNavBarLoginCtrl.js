@@ -1,13 +1,23 @@
-mvApp.controller('mvNavBarLoginCtrl', ['$scope','$http',function($scope,$http){
+mvApp.controller('mvNavBarLoginCtrl', ['$scope','$location','mvNotifier','mvIdentity','mvAuth',function($scope,$location,mvNotifier,mvIdentity,mvAuth){
+  $scope.identity = mvIdentity;
   $scope.signin=function(username,password){
-    $http.post('/login',{userName:username,password:password}).then(function(response){
-      if(response.data.success){
-        console.log('logged in');
+    mvAuth.authenticateUser(username, password).then(function(authenticated){
+      if(authenticated){
+        mvNotifier.notify("Login successful");
       }
-      else {
-        console.log('failed to log in');
+      else{
+        mvNotifier.notify("Login failed");
       }
+
+    });
+
+  };
+  $scope.signout=function(){
+    mvAuth.logoutUser().then(function(){
+      $scope.username="";
+      $scope.password="";
+      mvNotifier.notify("Sign out successful")
+      $location.path('/');
     })
-    //console.log("not done yet");
   };
 }])

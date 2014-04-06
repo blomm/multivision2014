@@ -1,26 +1,29 @@
-var passport = require('passport');
+var auth = require('./auth'),
+  mongoose=require('mongoose'),
+  User=mongoose.model('users');
 
 module.exports=function(app){
-  //any call that comes into the partials folder
+
+  app.get('/api/users',auth.requiresRole('admin'),function(req,res){
+    User.find({}).exec(function(err,collection){
+      res.send(collection)
+    })
+  });
+
   app.get('/partials/*', function(request, result){
     result.render('../../public/app/'+request.params)
   })
 
-  app.post('/login',function(req,res,next){
-    var auth=passport.authenticate('local',function(err,user){
-      if(err){return next(err);}
-      if(!user){res.send({success:false})}
-      req.logIn(user, function(err){
-        if(err) {return next(err);}
-        res.send({success:true, user:user});
-      })
-    })
-    auth(req,res,next);
+  app.post('/logout',function(req,res){
+    req.logout();
+    res.send();
   })
 
+  app.post('/login',auth.authenticate)
+
   //default-catch-all route handling
-  app.get('*', function(request, result){
-    result.render('index');
+  app.get('*', function(req, res){
+    res.render('index',{bootstrappedUser:req.user});
   })
 
 }
