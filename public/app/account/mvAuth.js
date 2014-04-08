@@ -22,6 +22,14 @@ angular.module('mvApp').factory('mvAuth',['$http','$q','mvIdentity','mvUser',fun
         dfd.resolve();
       }) ;
       return dfd.promise;
+    },
+    authoriseCurrentUserForRoute:function(role){
+      if(mvIdentity.isAuthorised('admin')){
+        return true;
+      }
+      else{
+        return $q.reject('not authorised');
+      }
     }
 
   }

@@ -7,8 +7,10 @@ angular.module('mvApp').factory('mvIdentity',['$window','mvUser',function($windo
   return{
     currentUser:currentUser,
     isAuthenticated: function(){
-      // !! casts value to boolean and ensures a boolean type
       return !!this.currentUser;
+    },
+    isAuthorised:function(role){
+      return !! this.currentUser && this.currentUser.roles.indexOf(role) >- 1;
     }
   }
 }])
