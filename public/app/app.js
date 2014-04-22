@@ -15,6 +15,8 @@ mvApp.config(function($routeProvider, $locationProvider){
       controller:'mvUserListCtrl',resolve: routeRoleChecks.admin
 
     })
+    .when('/signup',{templateUrl:'/partials/account/signup',
+      controller:'mvSignUpCtrl'})
 });
 
 angular.module('mvApp').run(function($rootScope,$location){
