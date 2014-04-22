@@ -2,7 +2,7 @@ angular.module('mvApp').controller('mvSignUpCtrl',['$scope','$location','mvAuth'
 
   $scope.signup=function(){
     var newUserData={
-      username:$scope.email,
+      userName:$scope.email,
       password:$scope.password,
       firstName:$scope.fname,
       lastName:$scope.lname

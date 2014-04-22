@@ -3,12 +3,22 @@ var mongoose=require('mongoose'),
 
 //1. create user schema
 var userSchema =new mongoose.Schema({
-  firstName:String,
-  lastName:String,
-  userName:String,
-  salt:String,
-  hashed_password:String,
+  firstName:{type:String, required:'{PATH} is required'},
+  lastName:{type:String, required:'{PATH} is required'},
+  userName:{
+    type:String,
+    required:'{PATH} is required',
+    unique:true
+  },
+  salt:{type:String, required:'{PATH} is required'},
+  hashed_password:{type:String, required:'{PATH} is required'},
   roles:[String]
+//  firstName:String,
+//  lastName:String,
+//  userName:String,
+//  salt:String,
+//  hashed_password:String,
+//  roles:[String]
 });
 
 userSchema.methods={
