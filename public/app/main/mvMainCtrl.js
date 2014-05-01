@@ -1,4 +1,4 @@
-mvApp.controller('mvMainCtrl', ['$scope',function($scope){
+angular.module('mvApp').controller('mvMainCtrl', ['$scope',function($scope){
   $scope.courses=[
     {name:'beginners math', featured: true, published: new Date('2014', '10', '28')},
     {name:'advanced science', featured: false, published: new Date('2014', '11', '22')},

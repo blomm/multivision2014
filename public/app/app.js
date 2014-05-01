@@ -1,6 +1,6 @@
-var mvApp=angular.module('mvApp',['ngResource','ngRoute'])
+angular.module('mvApp',['ngResource','ngRoute'])
 
-mvApp.config(function($routeProvider, $locationProvider){
+angular.module('mvApp').config(function($routeProvider, $locationProvider){
   var routeRoleChecks={
     admin:{auth:function(mvAuth){
         return mvAuth.authoriseCurrentUserForRoute('admin');
