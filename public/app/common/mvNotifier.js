@@ -9,6 +9,8 @@ angular.module('mvApp').factory('mvNotifier',['mvToastr',function(mvToastr){
         mvToastr.success(msg);
       else if(msg.toLowerCase().indexOf('fail')!=-1)
         mvToastr.error(msg);
+      else
+        mvToastr.success(msg);
       console.log(msg);
     },
     error:function(msg){

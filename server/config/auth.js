@@ -1,10 +1,17 @@
 var passport = require('passport');
 
 exports.authenticate=function(req, res, next){
-  req.body.userName =req.body.userName.toLowerCase();
+  console.log('user name: '+req.body.username);
+  console.log();
+  console.log();
+  req.body.username =req.body.username.toLowerCase();
   var auth=passport.authenticate('local',function(err,user){
-    if(err){return next(err);}
-    if(!user){res.send({success:false})}
+    if(err){
+      return next(err);
+    }
+    if(!user){
+      res.send({success:false})
+    }
     req.logIn(user, function(err){
       if(err) {return next(err);}
       //TODO: in the future, strip away the fields that we return to client.
