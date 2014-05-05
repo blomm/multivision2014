@@ -1,13 +1,15 @@
 angular.module('mvApp').controller('mvProfileCtrl',['$scope','mvIdentity','mvAuth','mvNotifier',function($scope,mvIdentity,mvAuth,mvNotifier){
 
-  console.log("mvIdentity.currentUser.userName: " + mvIdentity.currentUser.userName);
-  $scope.email=mvIdentity.currentUser.userName;
+
+  $scope.userName=mvIdentity.currentUser.userName;
   $scope.fname=mvIdentity.currentUser.firstName;
   $scope.lname=mvIdentity.currentUser.lastName;
+  $scope.email=mvIdentity.currentUser.email;
 
   $scope.update=function(){
     var newUserData={
-      userName:$scope.email,
+      email:$scope.email,
+      userName:$scope.userName,
       firstName:$scope.fname,
       lastName:$scope.lname
     }

@@ -1,8 +1,8 @@
 angular.module('mvApp').factory('mvAuth',['$http','$q','mvIdentity','mvUser',function($http,$q,mvIdentity,mvUser){
   return{
-    authenticateUser: function(username, password){
+    authenticateUser: function(userName, password){
       var dfd=$q.defer();
-      $http.post('/login',{username:username,password:password}).then(function(response){
+      $http.post('/login',{username:userName,password:password}).then(function(response){
         if(response.data.success){
           var user = new mvUser();
           angular.extend(user,response.data.user);
