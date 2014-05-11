@@ -2,15 +2,25 @@ extends ../includes/layout
 
 // tells jade to plug this content into the placeholder in the layout
 block main-content
-  .navbar.navbar-inverse.navbar-fixed-top
+  nav.navbar.navbar-inverse.navbar-fixed-top.navbar-default(role="navigation")
     .container
       .navbar-header
-          a.navbar-brand(href="/") Multivision2014
-            h6 -Extreme Training
-      .navbar-collapse.collapse
+        button.navbar-toggle(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse1")
+          span.sr-only Toggle Navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href="/") Multivision2014
+      .navbar-collapse.collapse#bs-example-navbar-collapse1
         ul.nav.navbar-nav
           li
             a(href="/") Home
+          li
+            a(href="/courses") Courses
+          li
+            a(href="/renewables") Renewables
+          li
+            a(href="/map") Map
         div(ng-include="'/partials/account/navbar-login'")
 
   section.content

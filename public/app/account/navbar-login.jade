@@ -3,11 +3,14 @@
     ul.nav.navbar-nav
       li
         a(href="/signup") Sign Up
-    .form-group
-      input.form-control(placeholder="User Name", ng-model="userName")
-    .form-group
-      input.form-control(type="password", placeholder="Password", ng-model="password")
-    button.btn.btn-primary(ng-click="signin(userName, password)")  Sign In
+      li
+        .form-group
+          input.form-control(placeholder="User Name", ng-model="userName")
+      li
+        .form-group
+          input.form-control(type="password", placeholder="Password", ng-model="password")
+      li
+        button.btn.btn-primary(ng-click="signin(userName, password)")  Sign In
   ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
     li.dropdown
       a.dropdown-toggle(href="",data-toggle="dropdown")

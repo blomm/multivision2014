@@ -18,6 +18,8 @@
     "angular-resource": "~1.2.14",
     "angular-route": "~1.2.14",
     "bootstrap": "~3.1.1",
-    "angular-mocks": "1.2.14"
+    "angular-mocks": "1.2.14",
+    "leaflet": "~0.7.2",
+    "angular-leaflet-directive": "~0.7.7"
   }
 }

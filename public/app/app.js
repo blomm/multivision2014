@@ -1,6 +1,11 @@
-angular.module('mvApp',['ngResource','ngRoute'])
+angular.module('mvApp',['ngResource','ngRoute','leaflet-directive'])
+
+
 
 angular.module('mvApp').config(function($routeProvider, $locationProvider){
+
+
+
   var routeRoleChecks={
     admin:{auth:function(mvAuth){
         return mvAuth.authoriseCurrentUserForRoute('admin');
@@ -25,6 +30,15 @@ angular.module('mvApp').config(function($routeProvider, $locationProvider){
     })
     .when('/profile',{templateUrl:'/partials/account/profile',
       controller:'mvProfileCtrl', resolve:routeRoleChecks.user
+    })
+    .when('/courses',{templateUrl:'/partials/courses/course-list',
+      controller:'mvCourseListCtrl'
+    })
+    .when('/renewables', {templateUrl:'/partials/renewables/dem-points',
+      controller:'mvDemPointsCtrl'
+    })
+    .when('/map', {templateUrl:'/partials/map/renewables-map',
+      controller:'mvRenewablesMapCtrl'
     })
 });
 
